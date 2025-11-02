@@ -1,0 +1,241 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* Variabel CSS untuk warna */
+:root {
+    --primary-color: #00b894;
+    --secondary-color: #2c3e50;
+    --accent-color: #3498db;
+    --error-color: #e74c3c;
+    --warning-color: #f1c40f;
+    --background-color: #1e2a3a;
+    --text-color: #ecf0f1;
+    --suggestion-hover: #3fa;
+}
+
+/* Reset margin dan padding pada semua elemen */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Gaya dasar untuk body */
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header dan Footer */
+header,
+footer {
+    background: var(--secondary-color);
+    text-align: center;
+    padding: 1em;
+    color: var(--text-color);
+}
+
+header {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Layout untuk konten utama */
+main {
+    flex: 1;
+    max-width: 600px;
+    width: 90%;
+    margin: 1.5rem auto;
+}
+
+/* Input text */
+input[type="text"] {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border: 2px solid #007BFF;
+    border-radius: 0.5rem;
+    background: #F0F8FF;
+    color: #333;
+    transition: border-color .3s ease, transform .3s ease, background .3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #0056b3;
+    transform: scale(1.02);
+    background: #e6f0ff;
+}
+
+/* Tombol */
+.buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+button {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button.clear {
+    flex: 0 0 auto;
+    width: 120px;
+    background: var(--error-color);
+    color: #fff;
+}
+
+button.retry {
+    flex: 0 0 auto;
+    width: 120px;
+    background: var(--warning-color);
+    color: #1e2a3a;
+    display: none;
+}
+
+button.clear i,
+button.retry i {
+    margin-right: 0.5rem;
+}
+
+button.clear:hover {
+    background: #c0392b;
+}
+
+button.retry:hover {
+    background: #d4ac0d;
+}
+
+/* Hasil */
+.result {
+    font-size: 1.125rem;
+    background: var(--secondary-color);
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+/* Saran */
+.suggestions {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 0;
+}
+
+.suggestions li {
+    background: #2e3b4e;
+    margin-bottom: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background .3s;
+}
+
+.suggestions li:hover {
+    background: var(--suggestion-hover);
+    color: #1e2a3a;
+}
+
+/* Footer */
+footer {
+    font-size: 0.875rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: var(--suggestion-hover);
+    text-decoration: none;
+}
+
+/* Responsif Mobile */
+@media (max-width: 767px) {
+    header h1 {
+        font-size: 1.25rem;
+    }
+
+    .result {
+        font-size: 0.875rem;
+    }
+
+    footer {
+        font-size: 0.75rem;
+    }
+
+    button.clear,
+    button.retry {
+        width: 100%;
+    }
+}
+
+/* Responsif Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    button.clear,
+    button.retry {
+        width: 50%;
+    }
+}
+
+/* Responsif Desktop */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    header h1 {
+        font-size: 1.75rem;
+    }
+
+    input[type="text"] {
+        font-size: 1.125rem;
+    }
+
+    .result {
+        font-size: 1.25rem;
+    }
+
+    button.clear,
+    button.retry {
+        width: 120px;
+    }
+}
+
+/* Responsif Large Desktop */
+@media (min-width: 1440px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .result {
+        font-size: 1.375rem;
+    }
+
+    input[type="text"] {
+        font-size: 1.25rem;
+    }
+
+    button.clear,
+    button.retry {
+        width: 150px;
+    }
+}
