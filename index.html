@@ -100,10 +100,14 @@ if ('serviceWorker' in navigator) {
     .catch(err => console.error('Service Worker gagal:', err));
 }
 </script>
-<style>
-  * {
-    color: #33ffaa;
-  }
+<style type="text/css" media="all">
+    body {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('background.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        
+    }
 </style>
 </body>
 </html>
