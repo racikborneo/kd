@@ -41,9 +41,8 @@ Ingin menjalankan proyek ini di komputer lokal Anda?
 1. Clone repositori ini
    ```bash
    git clone [https://github.com/racikborneo/kd.git](https://github.com/racikborneo/kd.git)
-
-```
-
+   ```
+   
 2. **Masuk ke direktori proyek**
 ```bash
 cd kd
