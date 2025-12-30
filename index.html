@@ -19,8 +19,29 @@
   <link rel="manifest" href="/kd/manifest.json" />
   <link rel="stylesheet" href="/kd/style.css" />
   <link rel="preload" href="/kd/style.css" as="style" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7"></script>
 </head>
 <body>
+  <script>
+    window.addEventListener('load', () => {
+  Swal.fire({
+    title: 'Versi Terbaru',
+    text: 'Halo, ini adalah versi terbaru. Kamu bisa terjemahkan per kalimat. By Nelsen Niko, Web Developer',
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonText: 'Lanjut',
+    cancelButtonText: 'Keluar',
+    allowOutsideClick: false,
+    allowEscapeKey: false
+  }).then((result) => {
+    if (result.isConfirmed) {
+      console.log('User memilih lanjut');
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      document.body.innerHTML = '';
+    }
+  });
+});
+  </script>
   <header>
     <h1><i class="fas fa-book"></i> Kamus Dayak Ahe ↔ Indonesia</h1>
   </header>
