@@ -39,12 +39,12 @@ Proyek ini dibangun menggunakan teknologi web fundamental untuk memastikan kecep
 Ingin menjalankan proyek ini di komputer lokal Anda?
 
 1. Clone repositori ini
-   ```bash
-   git clone [https://github.com/racikborneo/kd.git](https://github.com/racikborneo/kd.git)
+   ```html
+   git clone https://github.com/racikborneo/kd.git
    ```
    
 2. **Masuk ke direktori proyek**
-```bash
+```html
 cd kd
 
 ```
