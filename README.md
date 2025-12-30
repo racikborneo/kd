@@ -41,15 +41,11 @@ Ingin menjalankan proyek ini di komputer lokal Anda?
 1. Clone repositori ini
    ```html
    git clone https://github.com/racikborneo/kd.git
-   ```
-   
+   ```   
 2. **Masuk ke direktori proyek**
 ```html
 cd kd
-
 ```
-
-
 3. **Buka di browser**
 Cukup buka file `index.html` pada browser favorit Anda.
 
