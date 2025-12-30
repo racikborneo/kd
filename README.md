@@ -34,9 +34,9 @@ Proyek ini dibangun menggunakan teknologi web fundamental untuk memastikan kecep
 
 ---
 
-## 🚀 Memulai (Installation)
+## 🚀 Memulai Development (Installation)
 
-Ingin menjalankan proyek ini di komputer lokal Anda?
+Ingin menjalankan dan mengembangkan proyek ini di komputer lokal Anda?
 
 1. Clone repositori ini
    ```html
