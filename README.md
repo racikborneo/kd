@@ -85,4 +85,3 @@ Proyek ini bersifat **Open Source**. Anda bebas menggunakan, memodifikasi, dan m
 
 *Dibuat dengan ❤️ untuk pelestarian budaya Dayak.*
 
-```
