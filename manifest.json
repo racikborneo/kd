@@ -4,7 +4,7 @@
   "short_name": "Kamus Dayak Ahe",
   "description": "Aplikasi kamus online Bahasa Indonesia ke Dayak Kanayatn dan sebaliknya. Cepat, ringan, dan bisa diakses offline.",
   "lang": "id",
-  "start_url": "index.html",
+  "start_url": "./index.html",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
