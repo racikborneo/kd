@@ -1,101 +1,146 @@
 // sw.js — Service Worker Kamus Dayak Kanayatn / Ahe
-const CACHE_NAME = 'kamus-dayak-cache-v1';
-const OFFLINE_URLS = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/app.js',
-  '/manifest.json',
-  '/data-max.json',
-  '/favicon.ico',
-  '/icon-192.png',
-  '/icon-512.png'
+
+const CACHE_NAME = 'kamus-dayak-cache-v2';
+
+// Gunakan path relatif agar aman di localhost, PWA, & WebView
+const OFFLINE_ASSETS = [
+  './',
+  './index.html',
+  './style.css',
+  './app.js',
+  './manifest.json',
+  './data-max.json',
+  './icon-192.png',
+  './icon-512.png'
 ];
 
-// Saat instal — cache semua file penting
+// ==============================
+// INSTALL — cache aset inti
+// ==============================
 self.addEventListener('install', (event) => {
-  console.log('[SW] Instalasi service worker...');
+  console.log('[SW] Install');
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[SW] Menyimpan aset ke cache...');
-      return cache.addAll(OFFLINE_URLS);
+      return cache.addAll(OFFLINE_ASSETS);
     })
   );
   self.skipWaiting();
 });
 
-// Saat aktif — hapus cache lama
+// ==============================
+// ACTIVATE — bersihkan cache lama
+// ==============================
 self.addEventListener('activate', (event) => {
-  console.log('[SW] Mengaktifkan service worker...');
+  console.log('[SW] Activate');
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((name) => {
-          if (name !== CACHE_NAME) {
-            console.log('[SW] Menghapus cache lama:', name);
-            return caches.delete(name);
+    caches.keys().then((keys) =>
+      Promise.all(
+        keys.map((key) => {
+          if (key !== CACHE_NAME) {
+            console.log('[SW] Hapus cache lama:', key);
+            return caches.delete(key);
           }
         })
-      );
-    })
+      )
+    )
   );
   self.clients.claim();
 });
 
-// Saat fetch — ambil dari cache dulu, baru dari jaringan
+// ==============================
+// FETCH — routing strategi cache
+// ==============================
 self.addEventListener('fetch', (event) => {
-  const request = event.request;
+  const { request } = event;
 
-  // Lewati permintaan non-GET (seperti POST)
+  // Hanya tangani GET
   if (request.method !== 'GET') return;
 
-  // Strategi khusus untuk file data kamus
-  if (request.url.includes('data-max.json')) {
-    event.respondWith(networkThenCache(request));
-  } else {
-    event.respondWith(cacheThenNetwork(request));
+  // JSON kamus → network first
+  if (request.url.endsWith('data-max.json')) {
+    event.respondWith(networkFirst(request));
+    return;
   }
+
+  // File lain → cache first
+  event.respondWith(cacheFirst(request));
 });
 
-// --- Strategi cache-first (utama untuk file statis)
-async function cacheThenNetwork(request) {
+// ==============================
+// CACHE FIRST (HTML, CSS, JS, ICON)
+// ==============================
+async function cacheFirst(request) {
   const cache = await caches.open(CACHE_NAME);
-  const cachedResponse = await cache.match(request);
+  const cached = await cache.match(request);
 
-  if (cachedResponse) {
-    // Update cache di belakang layar
-    fetch(request).then((networkResponse) => {
-      if (networkResponse.ok) cache.put(request, networkResponse.clone());
-    });
-    return cachedResponse;
+  if (cached) {
+    // Update cache di background
+    fetch(request)
+      .then((res) => {
+        if (res.ok) cache.put(request, res.clone());
+      })
+      .catch(() => {});
+    return cached;
   }
 
-  // Kalau belum ada di cache, ambil dari jaringan
   try {
-    const networkResponse = await fetch(request);
-    if (networkResponse.ok) cache.put(request, networkResponse.clone());
-    return networkResponse;
+    const network = await fetch(request);
+    if (network.ok) cache.put(request, network.clone());
+    return network;
   } catch {
-    // Kalau offline dan file gak ada, tampilkan fallback HTML sederhana
+    // Fallback hanya untuk halaman
     if (request.destination === 'document') {
-      return new Response(
-        `<h2 style="text-align:center;">🌐 Offline</h2>
-         <p style="text-align:center;">Silakan nyalakan internet untuk memuat ulang Kamus Dayak.</p>`,
-        { headers: { 'Content-Type': 'text/html' } }
-      );
+      return offlinePage();
     }
   }
 }
 
-// --- Strategi network-first (utama untuk data JSON)
-async function networkThenCache(request) {
+// ==============================
+// NETWORK FIRST (JSON DATA)
+// ==============================
+async function networkFirst(request) {
   const cache = await caches.open(CACHE_NAME);
   try {
-    const networkResponse = await fetch(request);
-    if (networkResponse.ok) cache.put(request, networkResponse.clone());
-    return networkResponse;
+    const network = await fetch(request);
+    if (network.ok) cache.put(request, network.clone());
+    return network;
   } catch {
-    const cachedResponse = await cache.match(request);
-    return cachedResponse || new Response('{}', { headers: { 'Content-Type': 'application/json' } });
+    const cached = await cache.match(request);
+    return (
+      cached ||
+      new Response('{}', {
+        headers: { 'Content-Type': 'application/json' }
+      })
+    );
   }
 }
+
+// ==============================
+// OFFLINE FALLBACK PAGE
+// ==============================
+function offlinePage() {
+  return new Response(
+    `
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+      <meta charset="UTF-8">
+      <title>Offline</title>
+      <style>
+        body {
+          font-family: system-ui, sans-serif;
+          text-align: center;
+          padding: 40px;
+        }
+      </style>
+    </head>
+    <body>
+      <h2>📕 Kamus Dayak Ahe</h2>
+      <p>Kamu sedang offline.</p>
+      <p>Kamus tetap bisa digunakan jika data sudah tersimpan.</p>
+    </body>
+    </html>
+    `,
+    { headers: { 'Content-Type': 'text/html' } }
+  );
+                      }
