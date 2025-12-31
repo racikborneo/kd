@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* =======================
+   CSS VARIABLES
+======================= */
+:root {
+  --primary-color: #00b894;
+  --secondary-color: #2c3e50;
+  --accent-color: #3498db;
+  --error-color: #e74c3c;
+  --warning-color: #f1c40f;
+  --background-color: #1e2a3a;
+  --text-color: #ecf0f1;
+  --hover-color: #2ecc71;
+}
+
+/* =======================
+   RESET
+======================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+    url('background.jpg') center / cover no-repeat,
+    var(--background-color);
+}
+
+/* =======================
+   NAVBAR
+======================= */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,.3);
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* Menu */
+.nav-menu {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-menu a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .2s;
+}
+
+.nav-menu a:hover {
+  color: var(--hover-color);
+}
+
+/* Hamburger */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+/* =======================
+   MOBILE NAV
+======================= */
+@media (max-width: 767px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 60px;
+    right: 12px;
+    background: var(--secondary-color);
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,.4);
+    display: none;
+    min-width: 160px;
+  }
+
+  .nav-menu.show {
+    display: flex;
+  }
+
+  .nav-menu a {
+    padding: 0.4rem 0;
+  }
+}
+
+/* =======================
+   MAIN CONTENT
+======================= */
+main {
+  max-width: 600px;
+  width: 90%;
+  margin: 2rem auto;
+  padding-bottom: 5rem;
+}
+
+/* Input */
+input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.6rem;
+  border: 2px solid var(--accent-color);
+  background: #f0f8ff;
+  color: #333;
+  transition: all .25s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: #e6f5ff;
+  transform: scale(1.02);
+}
+
+/* =======================
+   BUTTONS
+======================= */
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+button {
+  border: none;
+  border-radius: 0.6rem;
+  padding: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, transform .1s;
+}
+
+button:active {
+  transform: scale(.97);
+}
+
+button.clear {
+  background: var(--error-color);
+  color: #fff;
+  width: 120px;
+}
+
+button.retry {
+  background: var(--warning-color);
+  color: #1e2a3a;
+  width: 120px;
+  display: none;
+}
+
+button.clear:hover {
+  background: #c0392b;
+}
+
+button.retry:hover {
+  background: #d4ac0d;
+}
+
+/* =======================
+   RESULT
+======================= */
+.result {
+  background: var(--secondary-color);
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,.35);
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  animation: fadeIn .25s ease;
+}
+
+/* =======================
+   SUGGESTIONS
+======================= */
+.suggestions {
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.suggestions li {
+  background: #2e3b4e;
+  margin-bottom: 0.5rem;
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.suggestions li:hover {
+  background: var(--hover-color);
+  color: #1e2a3a;
+}
+
+/* =======================
+   INSTALL BUTTON
+======================= */
+.install-btn {
+  margin-top: 1rem;
+  width: 100%;
+  background: var(--primary-color);
+  color: #fff;
+}
+
+/* =======================
+   FOOTER
+======================= */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: var(--secondary-color);
+  text-align: center;
+  padding: 0.6rem;
+  font-size: 0.85rem;
+}
+
+footer a {
+  color: var(--hover-color);
+  text-decoration: none;
+}
+
+/* =======================
+   RESPONSIVE
+======================= */
+@media (max-width: 767px) {
+  .buttons {
+    flex-direction: column;
+  }
+
+  button.clear,
+  button.retry {
+    width: 100%;
+  }
+
+  .result {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  input[type="text"] {
+    font-size: 1.1rem;
+  }
+
+  .result {
+    font-size: 1.15rem;
+  }
+}
+
+/* =======================
+   ANIMATION
+======================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

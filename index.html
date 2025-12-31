@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===== SEO ===== -->
+  <meta name="description" content="Kamus Dayak Ahe Kanayatn ↔ Indonesia digital untuk mempermudah penerjemahan kata secara cepat dan offline." />
+  <meta name="keywords" content="Kamus Dayak, Kamus Ahe Kanayatn, Kamus Bahasa Dayak, Kamus Offline" />
+
+  <!-- ===== Open Graph ===== -->
+  <meta property="og:title" content="Kamus Dayak Kanayatn ↔ Indonesia" />
+  <meta property="og:description" content="Kamus Dayak Kanayatn ↔ Indonesia digital, cepat dan bisa offline." />
+  <meta property="og:image" content="https://racikborneo.github.io/icon-512.png" />
+  <meta property="og:url" content="https://racikborneo.github.io" />
+  <meta property="og:type" content="website" />
+
+  <meta name="theme-color" content="#1e90ff" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <title>Kamus Dayak Kanayatn ↔ Indonesia</title>
+
+  <!-- ===== PWA ===== -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="icon" href="favicon.ico" />
+
+  <!-- ===== CSS ===== -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- ===== SweetAlert ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar">
+  <h1 class="logo">📘 Nelsen</h1>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+
+  <nav class="nav-menu" id="navMenu">
+ <a href="/">Beranda</a>
+<a href="#tentang">Tentang</a>
+<a href="#bantuan">Bantuan</a>
+<a href="https://wa.me/6285328736706" target="_blank" rel="noopener">
+  Kontak
+</a>
+  </nav>
+</header>
+
+<!-- ===== MAIN ===== -->
+<main>
+  <input
+    id="wordInput"
+    type="text"
+    placeholder="Tulis kata di sini..."
+    aria-label="Ketik kata yang akan diterjemahkan"
+  />
+
+  <div class="buttons">
+    <button class="clear" id="clearButton">🧹 Clear</button>
+    <button class="retry" id="retryButton">Retry</button>
+  </div>
+
+  <div id="resultBox" class="result" aria-live="polite"></div>
+  <ul id="suggestionsBox" class="suggestions"></ul>
+
+  <button id="install-btn" class="install-btn" hidden>
+    📱 Instal Aplikasi
+  </button>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  &copy; <span id="year"></span> Kamus Dayak Kanayatn Digital |
+  <a href="https://linktr.ee/nelsenn" target="_blank" rel="noopener">
+    @nelsen niko
+  </a>
+</footer>
+
+<!-- ===== APP SCRIPT ===== -->
+<script src="app.js" defer></script>
+
+<script>
+/* ===== Tahun Otomatis ===== */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ===== Navbar Toggle ===== */
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+
+menuToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('show');
+});
+
+navMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navMenu.classList.remove('show');
+  });
+});
+
+/* ===== SweetAlert Info ===== 
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    Swal.fire({
+      title: 'Versi Terbaru',
+      text: 'Kini mendukung terjemahan per kalimat.',
+      icon: 'info',
+      confirmButtonText: 'Lanjut',
+      showCancelButton: true,
+      cancelButtonText: 'Keluar',
+      allowOutsideClick: false
+    }).then(result => {
+      if (result.dismiss === Swal.DismissReason.cancel) {
+        location.href = 'about:blank';
+      }
+    });
+  }, 400);
+});
+*/
+/* ===== Service Worker ===== */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js')
+    .then(reg => console.log('Service Worker aktif:', reg.scope))
+    .catch(err => console.error('Service Worker gagal:', err));
+}
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const messages = {
+    '#tentang': {
+      title: 'Tentang',
+      text: 'Ini adalah Kamus Dayak Ahe (Kanayatn) digital.'
+    },
+    '#bantuan': {
+      title: 'Bantuan',
+      text: 'Ketik kata atau kalimat untuk menerjemahkan Bahasa Dayak Ahe ↔ Indonesia.'
+    }
+  };
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const hash = link.getAttribute('href');
+
+      if (messages[hash]) {
+        e.preventDefault();
+
+        Swal.fire({
+          icon: 'info',
+          title: messages[hash].title,
+          text: messages[hash].text,
+          confirmButtonText: 'Tutup'
+        });
+      }
+    });
+  });
+
+});
+</script>
+</body>
+</html>
