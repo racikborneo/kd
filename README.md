@@ -1,10 +1,10 @@
-# 📚 Kamus Digital Dayak Kanayatn / Ahe
+# 📚 Aplikasi Kamus Dayak Ahe / Kanayatn 
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/racikborneo/kd?style=for-the-badge&color=gold)
 ![GitHub forks](https://img.shields.io/github/forks/racikborneo/kd?style=for-the-badge&color=blue)
 ![License](https://img.shields.io/badge/License-Open%20Source-brightgreen?style=for-the-badge)
 
-**Kamus Digital Dayak Kanayatn / Ahe** adalah proyek *open-source* yang didedikasikan untuk melestarikan dan mendokumentasikan bahasa daerah melalui teknologi modern. Dibangun agar ringan, cepat, dan dapat diakses oleh siapa saja, di mana saja.
+**Aplikasi Kamus Dayak Ahe / Kanayatn** adalah proyek *open-source* yang didedikasikan untuk melestarikan dan mendokumentasikan bahasa daerah melalui teknologi modern. Dibangun agar ringan, cepat, dan dapat diakses oleh siapa saja, di mana saja.
 
 🚀 **[Lihat Demo Live](https://racikborneo.github.io/kd/)**
 
