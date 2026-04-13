@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>✨ KAMUS DAYAK · ARCADE PRO</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0b1220;
+      --card: #111c33;
+      --accent: #38bdf8;
+      --good: #22c55e;
+      --bad: #ef4444;
+      --fire: #f97316;
+      --text: #e2e8f0;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100dvh;
+      padding: 12px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 20px 18px;
+      border-radius: 28px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      transition: all 0.25s ease;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      letter-spacing: 0.3px;
+    }
+
+    .bar {
+      height: 7px;
+      background: #1e293b;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      box-shadow: inset 0 1px 2px #00000055;
+    }
+
+    .bar > div {
+      height: 100%;
+      background: linear-gradient(90deg, #2dd4bf, var(--accent));
+      width: 0%;
+      transition: width 0.3s ease;
+      border-radius: 20px;
+    }
+
+    .timerBar {
+      height: 7px;
+      background: linear-gradient(90deg, #facc15, #f97316);
+      border-radius: 20px;
+      width: 100%;
+      transition: width 0.9s linear;
+      margin-bottom: 14px;
+      box-shadow: 0 0 6px #f97316aa;
+    }
+
+    .word {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 14px 0 10px;
+      text-align: center;
+      text-shadow: 0 2px 5px #00000033;
+      word-break: break-word;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px 8px;
+      margin: 6px 0;
+      border: none;
+      border-radius: 40px;
+      background: #1f2a44;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      box-shadow: 0 4px 0 #0f172a;
+      border: 1px solid #2d3a5e;
+      text-align: left;
+      padding-left: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    .btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #0f172a;
+    }
+
+    .btn.good {
+      background: var(--good) !important;
+      border-color: #4ade80;
+      box-shadow: 0 4px 0 #15803d;
+    }
+
+    .btn.bad {
+      background: var(--bad) !important;
+      border-color: #f87171;
+      box-shadow: 0 4px 0 #991b1b;
+    }
+
+    .restart-btn {
+      background: #334155;
+      box-shadow: 0 4px 0 #1e293b;
+      border: 1px solid #64748b;
+      margin-top: 18px;
+      text-align: center;
+      font-size: 18px;
+      padding: 14px;
+    }
+
+    .hint {
+      margin-top: 14px;
+      font-size: 13px;
+      opacity: 0.9;
+      background: #0f1a2b;
+      padding: 8px 14px;
+      border-radius: 30px;
+      display: inline-block;
+      border-left: 4px solid var(--accent);
+    }
+
+    /* ANIMATIONS */
+    .shake {
+      animation: shake 0.4s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25% { transform: translateX(-7px); }
+      75% { transform: translateX(7px); }
+    }
+
+    .combo-glow {
+      box-shadow: 0 0 20px #38bdf8, 0 0 45px #2dd4bf;
+      transition: box-shadow 0.2s;
+    }
+
+    .fire {
+      animation: firePulse 0.7s infinite alternate;
+    }
+
+    @keyframes firePulse {
+      from { box-shadow: 0 0 12px #f97316, 0 0 25px #facc15; }
+      to { box-shadow: 0 0 22px #ea580c, 0 0 50px #fdba74; }
+    }
+
+    .fade-out {
+      animation: fadeOut 0.5s forwards;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; transform: scale(0.94); }
+    }
+
+    .end-screen {
+      text-align: center;
+    }
+
+    .end-screen h2 {
+      font-size: 28px;
+      margin: 10px 0 6px;
+    }
+
+    .end-screen .score-big {
+      font-size: 48px;
+      font-weight: 800;
+      color: #facc15;
+      text-shadow: 0 0 15px #f97316;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn-group .btn {
+      flex: 1;
+      text-align: center;
+      padding-left: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="card" id="gameCard">
+    <div class="top">
+      <div>🎯 <span id="score">0</span></div>
+      <div>🔥 <span id="streak">0</span></div>
+      <div>⏳ <span id="time">30</span></div>
+    </div>
+
+    <div class="bar"><div id="progress"></div></div>
+    <div class="timerBar" id="timerBar"></div>
+
+    <div class="word" id="question">⚡ Siap bertarung?</div>
+
+    <div id="answers"></div>
+    <div id="hintArea" style="min-height: 40px;">
+      <span class="hint" id="hint"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    "use strict";
+
+    // ---------- DATA & STATE ----------
+    let data = [], used = [];
+    let score = 0, streak = 0, round = 0;  // round = 0..10 (10 soal)
+    let correctAnswer = "";
+    let timeLeft = 30;
+    let timerInterval = null;
+    let gameActive = true;
+    let gameFinished = false;    // supaya tidak double end
+
+    const MAX_ROUNDS = 10;
+
+    // DOM elements
+    const card = document.getElementById('gameCard');
+    const questionEl = document.getElementById('question');
+    const answersDiv = document.getElementById('answers');
+    const hintEl = document.getElementById('hint');
+    const scoreSpan = document.getElementById('score');
+    const streakSpan = document.getElementById('streak');
+    const timeSpan = document.getElementById('time');
+    const progressBar = document.getElementById('progress');
+    const timerBar = document.getElementById('timerBar');
+
+    // ---------- AUDIO (with user interaction fallback) ----------
+    const sCorrect = new Audio("https://actions.google.com/sounds/v1/cartoon/pop.ogg");
+    const sWrong = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+    const sGameOver = new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
+    
+    // Preload / mute helps autoplay policy
+    [sCorrect, sWrong, sGameOver].forEach(a => { a.volume = 0.4; a.load(); });
+
+    function playSound(audio) {
+      audio.currentTime = 0;
+      audio.play().catch(()=>{});
+    }
+
+    // ---------- UTILS ----------
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function pickRandomDistinct(except = [], count = 4) {
+      const candidates = data.filter(item => !except.includes(item.i) && item.i !== correctAnswer);
+      const shuffled = shuffleArray([...candidates]);
+      return shuffled.slice(0, count).map(item => item.i);
+    }
+
+    // Pilih soal yang belum dipakai
+    function pickSmartQuestion() {
+      let available = data.filter(item => !used.includes(item.d));
+      if (available.length === 0) {
+        used = [];
+        available = data;
+      }
+      const selected = available[Math.floor(Math.random() * available.length)];
+      used.push(selected.d);
+      return selected;
+    }
+
+    // Update UI angka
+    function refreshUI() {
+      scoreSpan.textContent = score;
+      streakSpan.textContent = streak;
+      timeSpan.textContent = timeLeft;
+      const progressPercent = (round / MAX_ROUNDS) * 100;
+      progressBar.style.width = progressPercent + '%';
+      const timePercent = Math.max(0, (timeLeft / 30) * 100);
+      timerBar.style.width = timePercent + '%';
+    }
+
+    // Timer bar update + end condition
+    function timerTick() {
+      if (!gameActive || gameFinished) return;
+      timeLeft = Math.max(0, timeLeft - 1);
+      refreshUI();
+
+      if (timeLeft <= 0) {
+        // waktu habis -> game over
+        endGame('⏰ WAKTU HABIS');
+      }
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(timerTick, 1000);
+    }
+
+    function stopTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+    }
+
+    // hint ketika salah
+    function showHint() {
+      const found = data.find(item => item.i === correctAnswer);
+      if (found) {
+        hintEl.textContent = `💡 Awalan: "${found.d[0]}" · ${found.d.length} huruf`;
+      } else {
+        hintEl.textContent = '';
+      }
+    }
+
+    // progress round
+    function advanceRound() {
+      round++;
+      refreshUI();
+      if (round >= MAX_ROUNDS) {
+        endGame('🏆 RONDE SELESAI');
+        return true;
+      }
+      return false;
+    }
+
+    // ---------- RENDER PERTANYAAN ----------
+    function renderQuestion() {
+      if (!gameActive || gameFinished) return;
+
+      const q = pickSmartQuestion();
+      correctAnswer = q.i;
+      const questionWord = q.d;
+
+      // siapkan opsi (5 pilihan)
+      let options = [correctAnswer];
+      const distractors = pickRandomDistinct([correctAnswer], 4);
+      options.push(...distractors);
+      options = shuffleArray(options);
+
+      // Tampilkan
+      questionEl.textContent = `📖 Apa arti: ${questionWord}?`;
+      
+      const letters = ['A', 'B', 'C', 'D', 'E'];
+      answersDiv.innerHTML = options.map((opt, idx) => 
+        `<button class="btn" data-value="${opt}">${letters[idx]}. ${opt}</button>`
+      ).join('');
+
+      hintEl.textContent = ''; // reset hint
+      
+      // Attach event listeners
+      document.querySelectorAll('#answers .btn').forEach(btn => {
+        btn.addEventListener('click', answerHandler);
+      });
+    }
+
+    // ---------- HANDLER JAWABAN ----------
+    const answerHandler = (e) => {
+      if (!gameActive || gameFinished) return;
+      const btn = e.currentTarget;
+      const selectedValue = btn.getAttribute('data-value');
+
+      // disable semua tombol sementara (mencegah double click)
+      document.querySelectorAll('#answers .btn').forEach(b => {
+        b.style.pointerEvents = 'none';
+      });
+
+      const isCorrect = (selectedValue === correctAnswer);
+      
+      // visual feedback
+      btn.classList.add(isCorrect ? 'good' : 'bad');
+      
+      // sound
+      playSound(isCorrect ? sCorrect : sWrong);
+
+      // efek card
+      if (isCorrect) {
+        // COMBO
+        streak++;
+        score = Math.max(0, score + 10);
+        
+        if (streak >= 3) {
+          card.classList.add('combo-glow', 'fire');
+          setTimeout(() => card.classList.remove('fire'), 700);
+          setTimeout(() => card.classList.remove('combo-glow'), 900);
+        }
+        // bonus waktu untuk streak 5+
+        if (streak >= 5) {
+          timeLeft = Math.min(45, timeLeft + 2); // cap 45 biar gak gila
+        }
+
+      } else {
+        // WRONG
+        streak = 0;
+        score = Math.max(0, score - 5);
+        timeLeft = Math.max(0, timeLeft - 2);
+        
+        card.classList.add('shake');
+        setTimeout(() => card.classList.remove('shake'), 400);
+        
+        showHint();
+      }
+
+      refreshUI();
+
+      // cek apakah game harus lanjut
+      const isRoundFinished = advanceRound();
+      
+      if (!isRoundFinished && gameActive && !gameFinished) {
+        // lanjut soal berikutnya
+        setTimeout(() => {
+          // enable kembali pointer events (render baru)
+          renderQuestion();
+        }, 450);
+      } else {
+        // game selesai karena round habis atau waktu 0
+        if (!gameFinished) {
+          // pastikan endGame dipanggil (mungkin dipicu di advanceRound)
+        }
+        // enable biar gak stuck (tapi udah end)
+        document.querySelectorAll('#answers .btn').forEach(b => b.style.pointerEvents = '');
+      }
+
+      // jika waktu habis saat proses, endGame akan terpanggil via timer
+    };
+
+    // ---------- END GAME + TAMPILAN RESTART/MAIN LAGI ----------
+    function endGame(message = '🎯 GAME SELESAI') {
+      if (gameFinished) return;
+      gameFinished = true;
+      gameActive = false;
+      stopTimer();
+      
+      playSound(sGameOver);
+      
+      card.classList.add('fade-out');
+      
+      setTimeout(() => {
+        // Ubah isi card jadi layar akhir dengan tombol restart & main lagi
+        questionEl.textContent = message;
+        
+        // Siapkan HTML end screen
+        answersDiv.innerHTML = `
+          <div class="end-screen">
+            <div class="score-big">${score}</div>
+            <div style="font-size:18px; margin-bottom:5px;">🔥 Streak terbaik: ${streak}</div>
+            <div class="btn-group">
+              <button class="btn" id="restartGameBtn">🔄 Restart</button>
+              <button class="btn" id="playAgainBtn">⚡ Main Lagi</button>
+            </div>
+          </div>
+        `;
+        
+        hintEl.textContent = '💪 Latih lagi kosakata Dayak!';
+        timerBar.style.width = '0%';
+        progressBar.style.width = '100%';
+        
+        // Hilangkan animasi fade-out
+        card.classList.remove('fade-out');
+        
+        // Event listener tombol restart & main lagi
+        document.getElementById('restartGameBtn').addEventListener('click', () => {
+          resetAndStart();
+        });
+        document.getElementById('playAgainBtn').addEventListener('click', () => {
+          resetAndStart();
+        });
+        
+      }, 500);
+    }
+
+    // ---------- RESET SEMUA & MULAI BARU ----------
+    function resetAndStart() {
+      // bersihkan timer
+      stopTimer();
+      
+      // reset state
+      gameActive = true;
+      gameFinished = false;
+      score = 0;
+      streak = 0;
+      round = 0;
+      timeLeft = 30;
+      used = [];
+      
+      // reset tampilan
+      card.classList.remove('shake', 'combo-glow', 'fire', 'fade-out');
+      hintEl.textContent = '';
+      
+      refreshUI();
+      
+      // ambil soal pertama
+      if (data.length > 0) {
+        renderQuestion();
+      } else {
+        questionEl.textContent = 'Memuat kamus...';
+        answersDiv.innerHTML = '';
+      }
+      
+      startTimer();
+    }
+
+    // ---------- INISIALISASI DATA ----------
+    async function fetchDictionary() {
+      try {
+        const res = await fetch("https://raw.githubusercontent.com/racikborneo/kd/refs/heads/main/data-max.json");
+        if (!res.ok) throw new Error("Gagal memuat kamus");
+        const json = await res.json();
+        const raw = json.kamus["dayak-id"];
+        data = Object.entries(raw).map(([dayak, indo]) => ({ d: dayak, i: indo }));
+        
+        if (data.length === 0) {
+          // fallback kecil
+          data = [
+            {d:"laki-laki", i:"laki-laki"},
+            {d:"bini", i:"perempuan"},
+            {d:"ai", i:"air"},
+            {d:"tanah", i:"tanah"},
+            {d:"panamukng", i:"bukit"}
+          ];
+        }
+        
+        // Mulai permainan
+        resetAndStart();
+      } catch (err) {
+        console.warn("Fallback kamus digunakan");
+        data = [
+          {d:"laki-laki", i:"laki-laki"}, {d:"bini", i:"perempuan"}, {d:"ai", i:"air"},
+          {d:"tanah", i:"tanah"}, {d:"panamukng", i:"bukit"}, {d:"manok", i:"ayam"},
+          {d:"asu", i:"anjing"}, {d:"ari", i:"hari"}, {d:"maraga", i:"jalan"},
+          {d:"uma", i:"ladang"}
+        ];
+        resetAndStart();
+      }
+    }
+
+    // jalankan
+    fetchDictionary();
+  })();
+</script>
+</body>
+</html>
