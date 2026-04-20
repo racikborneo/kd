@@ -1,239 +1,251 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kamus Dayak Ahe | Terjemahan Cepat</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root {
-    --primary: #8b5cf6;
-    --primary-light: #a78bfa;
-    --secondary: #f59e0b;
-    --bg: #f8fafc;
-    --card-bg: rgba(255,255,255,0.85);
-    --text: #1e293b;
-    --text-light: #64748b;
-    --glass-border: rgba(255,255,255,0.5);
-    --shadow: 0 10px 30px -5px rgba(0,0,0,0.1);
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamus Dayak Ahe Premium</title>
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg: #0f172a;
-        --card-bg: rgba(30,41,59,0.8);
-        --text: #f1f5f9;
-        --text-light: #94a3b8;
-        --glass-border: rgba(255,255,255,0.1);
-        --shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
-    }
-}
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg,#7c3aed,#6366f1,#f59e0b);
+            color: #222;
+        }
 
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
-body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    margin:0; padding:0;
-    background: var(--bg);
-    background-image: radial-gradient(circle at 0% 0%, rgba(139,92,246,0.15) 0%, transparent 50%),
-                      radial-gradient(circle at 100% 100%, rgba(245,158,11,0.1) 0%, transparent 50%);
-    color: var(--text);
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    min-height:100vh;
-    padding:20px;
-    line-height:1.6;
-}
+        .container {
+            max-width: 420px;
+            margin: auto;
+            padding: 20px;
+        }
 
-.container {
-    width:100%;
-    max-width:480px;
-    padding:24px;
-    animation: fadeIn 0.8s ease-out;
-}
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 5px;
+        }
 
-@keyframes fadeIn {
-    from { opacity:0; transform: translateY(20px);}
-    to { opacity:1; transform: translateY(0);}
-}
+        .subtitle {
+            text-align: center;
+            color: #eee;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
 
-header { text-align:center; margin-bottom:30px; }
-.logo-icon { font-size:4rem; margin-bottom:10px; display:inline-block; filter:drop-shadow(0 5px 15px rgba(139,92,246,0.3)); animation: bounce 2s infinite; }
-@keyframes bounce { 0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);} }
+        .urgency {
+            text-align: center;
+            font-size: 13px;
+            color: #fff;
+            background: rgba(0,0,0,0.2);
+            padding: 6px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
 
-h1 {
-    font-size:2.2rem; font-weight:800; margin:0;
-    background: linear-gradient(135deg,var(--primary),var(--secondary));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-1px;
-}
+        .card {
+            background: #fff;
+            padding: 16px;
+            border-radius: 16px;
+            margin-bottom: 14px;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
 
-.step-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(12px);
-    border:1px solid var(--glass-border);
-    border-radius:20px;
-    padding:18px;
-    margin-bottom:16px;
-    box-shadow: var(--shadow);
-    display:flex; align-items:flex-start; gap:15px;
-    transition: all 0.3s ease;
-}
-.step-card:hover { transform: translateY(-5px) scale(1.02); border-color: var(--primary-light); }
+        .step {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-.step-number {
-    background: var(--primary);
-    color:white;
-    width:30px; height:30px;
-    border-radius:8px;
-    display:flex; justify-content:center; align-items:center;
-    font-weight:bold; font-size:0.9rem; flex-shrink:0;
-}
+        .payment {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
 
-.step-content a { color: var(--primary); font-weight:700; text-decoration:none; transition:0.2s; }
-.step-content a:hover { color: var(--primary-light); }
+        .payment:hover {
+            background: #e0e7ff;
+            transform: scale(1.03);
+        }
 
-.note {
-    background: rgba(239,68,68,0.1);
-    color: #ef4444;
-    padding:12px 20px;
-    border-radius:12px;
-    font-size:0.85rem;
-    font-weight:600;
-    margin:25px 0;
-    border-left:4px solid #ef4444;
-    animation: fadeIn 1s ease-out;
-}
+        .btn {
+            display: block;
+            text-align: center;
+            padding: 14px;
+            background: #25D366;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 14px;
+            margin-top: 12px;
+            font-weight: bold;
+            font-size: 15px;
+            transition: 0.2s;
+        }
 
-.payment-box {
-    background: var(--card-bg);
-    backdrop-filter: blur(12px);
-    border:1px solid var(--glass-border);
-    border-radius:24px;
-    padding:30px 20px;
-    box-shadow: var(--shadow);
-    animation: fadeIn 1s ease-out;
-}
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37,211,102,0.4);
+        }
 
-.payment-box h2 { font-size:1.2rem; margin:0 0 20px 0; text-align:center; }
+        .secondary-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: #6366f1;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            margin-top: 8px;
+            font-weight: 600;
+        }
 
-.payment-item {
-    display:flex; justify-content:space-between; align-items:center;
-    background: rgba(0,0,0,0.03);
-    padding:14px 18px; border-radius:16px; margin-bottom:12px;
-    cursor:pointer; transition:0.3s; border:1px solid transparent;
-}
-@media (prefers-color-scheme: dark) { .payment-item { background: rgba(255,255,255,0.05); } }
-.payment-item:hover { background: rgba(139,92,246,0.1); border-color: var(--primary-light); }
+        .note {
+            background: #fff7ed;
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
 
-.payment-info { display:flex; align-items:center; gap:12px; }
-.payment-item img { width:36px; height:36px; object-fit:contain; border-radius:8px; transition:0.3s; }
-.payment-item:hover img { transform: scale(1.1); }
+        .testi {
+            font-size: 13px;
+            background: #f9fafb;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 8px;
+        }
 
-.payment-name { font-weight:600; font-size:0.95rem; }
+        .footer {
+            text-align: center;
+            color: #ddd;
+            font-size: 12px;
+            margin-top: 20px;
+        }
 
-.copy-icon { opacity:0.4; transition:0.3s; }
-.payment-item:hover .copy-icon { opacity:1; color: var(--primary-light); }
-
-.btn-wa {
-    display:flex; justify-content:center; align-items:center; gap:10px;
-    background:#25D366; color:white; text-decoration:none;
-    padding:16px; border-radius:16px; font-weight:700; margin-top:20px;
-    transition:0.3s; box-shadow:0 10px 20px -5px rgba(37,211,102,0.4);
-}
-.btn-wa:hover { transform: translateY(-3px); box-shadow:0 15px 25px -5px rgba(37,211,102,0.5); filter:brightness(1.1); }
-
-/* Toast Notification */
-#toast {
-    visibility:hidden; min-width:250px;
-    background-color:#333; color:#fff; text-align:center;
-    border-radius:12px; padding:16px;
-    position:fixed; z-index:1000; bottom:30px;
-    font-weight:600; box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
-#toast.show { visibility:visible; animation: slideIn 0.5s, slideOut 0.5s 2.5s; }
-@keyframes slideIn { from {bottom:0; opacity:0;} to {bottom:30px; opacity:1;} }
-@keyframes slideOut { from {bottom:30px; opacity:1;} to {bottom:0; opacity:0;} }
-</style>
+        #toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #111;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 10px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        #toast.show {
+            opacity: 1;
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="container">
-    <header>
-        <span class="logo-icon">✨</span>
-        <h1>Kamus Dayak Ahe</h1>
-        <p style="color: var(--text-light); margin-top:5px;">Terjemahan akurat & bersahabat</p>
-    </header>
+    <div class="container">
 
-    <div class="step-card">
-        <div class="step-number">1</div>
-        <div class="step-content">
-            <a href="https://wa.me/6285328736706" target="_blank">Kirim pesan WhatsApp</a>
-            <div style="font-size:0.85rem; color: var(--text-light);">Kirim kata atau kalimat yang ingin diterjemahkan.</div>
+        <h1>✨ Kamus Dayak Ahe</h1>
+        <div class="subtitle">
+            Terjemahan cepat ⚡ akurat 🎯 & terpercaya 🔥
         </div>
-    </div>
-
-    <div class="step-card">
-        <div class="step-number">2</div>
-        <div class="step-content">
-            <strong>Terima Balasan Cepat</strong>
-            <div style="font-size:0.85rem; color: var(--text-light);">Tim kami akan memproses terjemahan Anda segera.</div>
+        <div class="urgency">
+            ⏳ Respon cepat hari ini • Jangan sampai antri lama
         </div>
-    </div>
 
-    <div class="note">
-        💡 Dukung developer minimal <b>Rp 10.000</b> untuk mendapatkan balasan terjemahan.
-    </div>
-
-    <div class="payment-box">
-        <h2>Traktir Kopi ☕</h2>
-        
-        <div class="payment-item" onclick="copyText('085328736706','Dana')">
-            <div class="payment-info">
-                <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png" alt="Dana">
-                <span class="payment-name">Dana</span>
+        <!-- STEP 1 -->
+        <div class="card">
+            <div class="step">
+                1️⃣ Bayar Rp 10.000 💸
             </div>
-            <span class="copy-icon">📋</span>
-        </div>
 
-        <div class="payment-item" onclick="copyText('000028454387','Super Bank')">
-            <div class="payment-info">
-                <img src="https://cdn-icons-png.flaticon.com/512/888/888857.png" alt="Super Bank">
-                <span class="payment-name">Super Bank</span>
+            <div class="payment" onclick="copy('085328736706','Dana')">
+                💳 Dana <span>📋</span>
             </div>
-            <span class="copy-icon">📋</span>
-        </div>
 
-        <div class="payment-item" onclick="copyText('901780894775','Sea Bank')">
-            <div class="payment-info">
-                <img src="https://cdn-icons-png.flaticon.com/512/888/888844.png" alt="Sea Bank">
-                <span class="payment-name">Sea Bank</span>
+            <div class="payment" onclick="copy('000028454387','Super Bank')">
+                🏦 Super Bank <span>📋</span>
             </div>
-            <span class="copy-icon">📋</span>
+
+            <div class="payment" onclick="copy('901780894775','Sea Bank')">
+                🌊 Sea Bank <span>📋</span>
+            </div>
+
+            <a href="#" onclick="waBukti()" class="btn">
+                📤 Kirim Bukti Bayar (Auto Chat)
+            </a>
         </div>
 
-        <a href="https://wa.me/6285328736706" target="_blank" class="btn-wa">
-            💬 Chat via WhatsApp
-        </a>
+        <!-- STEP 2 -->
+        <div class="card">
+            <div class="step">
+                2️⃣ Kirim Teks 📝
+            </div>
+
+            <a href="#" onclick="waOrder()" class="secondary-btn">
+                💬 Kirim Kata / Kalimat
+            </a>
+
+            <p style="font-size:13px;">
+                Tulis teks yang ingin diterjemahkan.
+            </p>
+
+            <div class="testi">
+                ⭐ “"
+            </div>
+            <div class="testi">
+                ⭐ “Terjemahan akurat 👍”
+            </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="card">
+            <div class="step">
+                3️⃣ Terima Hasil 🚀
+            </div>
+            <p>
+                Hasil dikirim cepat & jelas.
+            </p>
+        </div>
+
+        <div class="note">
+            💡 Tips: Gunakan kalimat lengkap agar hasil lebih akurat 🎯
+        </div>
+
+        <div class="footer">
+            © 2026 • Support Developer ❤️
+        </div>
+
     </div>
-</div>
 
-<div id="toast"></div>
+    <div id="toast"></div>
 
-<script>
-function copyText(number, provider){
-    navigator.clipboard.writeText(number).then(()=>{
-        showToast(`✅ Nomor ${provider} disalin!`);
-    }).catch(()=>{
-        showToast("❌ Gagal menyalin nomor");
-    });
-}
-function showToast(message){
-    const toast=document.getElementById("toast");
-    toast.innerText=message;
-    toast.className="show";
-    setTimeout(()=>{toast.className=toast.className.replace("show","");},3000);
-}
-</script>
+    <script>
+        function copy(text, name) {
+            navigator.clipboard.writeText(text);
+            showToast("✅ " + name + " disalin!");
+        }
+
+        function showToast(msg) {
+            let t = document.getElementById("toast");
+            t.innerText = msg;
+            t.classList.add("show");
+            setTimeout(()=>t.classList.remove("show"), 2000);
+        }
+
+        function waBukti() {
+            let pesan = "Halo, saya sudah bayar. Ini bukti transfer saya.";
+            window.open("https://wa.me/6285328736706?text=" + encodeURIComponent(pesan));
+        }
+
+        function waOrder() {
+            let pesan = "Halo, saya ingin terjemahkan:\n\n";
+            window.open("https://wa.me/6285328736706?text=" + encodeURIComponent(pesan));
+        }
+    </script>
 
 </body>
 </html>
