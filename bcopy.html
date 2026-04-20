@@ -1,251 +1,218 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamus Dayak Ahe Premium</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kamus Dayak Ahe Premium</title>
 
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            background: linear-gradient(135deg,#7c3aed,#6366f1,#f59e0b);
-            color: #222;
-        }
+<style>
+body {
+    font-family:'Segoe UI',sans-serif;
+    margin:0;
+    background:linear-gradient(135deg,#7c3aed,#6366f1,#f59e0b);
+    color:#222;
+}
 
-        .container {
-            max-width: 420px;
-            margin: auto;
-            padding: 20px;
-        }
+.container {
+    max-width:420px;
+    margin:auto;
+    padding:20px;
+}
 
-        h1 {
-            text-align: center;
-            color: #fff;
-            margin-bottom: 5px;
-        }
+h1 { text-align:center; color:#fff; margin-bottom:5px; }
 
-        .subtitle {
-            text-align: center;
-            color: #eee;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
+.subtitle {
+    text-align:center;
+    color:#eee;
+    font-size:14px;
+}
 
-        .urgency {
-            text-align: center;
-            font-size: 13px;
-            color: #fff;
-            background: rgba(0,0,0,0.2);
-            padding: 6px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
+.urgency {
+    text-align:center;
+    font-size:13px;
+    color:#fff;
+    background:rgba(0,0,0,0.2);
+    padding:6px;
+    border-radius:8px;
+    margin:10px 0 15px;
+}
 
-        .card {
-            background: #fff;
-            padding: 16px;
-            border-radius: 16px;
-            margin-bottom: 14px;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-        }
+.card {
+    background:#fff;
+    padding:16px;
+    border-radius:16px;
+    margin-bottom:14px;
+    box-shadow:0 12px 25px rgba(0,0,0,0.15);
+}
 
-        .step {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+.step { font-weight:bold; margin-bottom:10px; }
 
-        .payment {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px;
-            background: #f3f4f6;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+.payment {
+    display:flex;
+    justify-content:space-between;
+    padding:12px;
+    background:#f3f4f6;
+    border-radius:12px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:0.2s;
+    font-weight:600;
+}
 
-        .payment:hover {
-            background: #e0e7ff;
-            transform: scale(1.03);
-        }
+.payment:hover {
+    background:#e0e7ff;
+    transform:scale(1.03);
+}
 
-        .btn {
-            display: block;
-            text-align: center;
-            padding: 14px;
-            background: #25D366;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 14px;
-            margin-top: 12px;
-            font-weight: bold;
-            font-size: 15px;
-            transition: 0.2s;
-        }
+.payment:active {
+    transform:scale(0.97);
+}
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(37,211,102,0.4);
-        }
+.number {
+    font-size:13px;
+    color:#555;
+}
 
-        .secondary-btn {
-            display: block;
-            text-align: center;
-            padding: 12px;
-            background: #6366f1;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 12px;
-            margin-top: 8px;
-            font-weight: 600;
-        }
+.btn, .secondary-btn {
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    border-radius:14px;
+    margin-top:12px;
+    font-weight:bold;
+}
 
-        .note {
-            background: #fff7ed;
-            border-left: 4px solid #f59e0b;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 13px;
-            margin-bottom: 14px;
-        }
+.btn {
+    padding:14px;
+    background:#25D366;
+    color:#fff;
+}
 
-        .testi {
-            font-size: 13px;
-            background: #f9fafb;
-            padding: 10px;
-            border-radius: 10px;
-            margin-top: 8px;
-        }
+.secondary-btn {
+    padding:12px;
+    background:#6366f1;
+    color:#fff;
+}
 
-        .footer {
-            text-align: center;
-            color: #ddd;
-            font-size: 12px;
-            margin-top: 20px;
-        }
+.btn:hover { box-shadow:0 10px 20px rgba(37,211,102,0.4); }
 
-        #toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #111;
-            color: #fff;
-            padding: 10px 16px;
-            border-radius: 10px;
-            opacity: 0;
-            transition: 0.3s;
-        }
-        #toast.show {
-            opacity: 1;
-        }
-    </style>
+.testi {
+    font-size:13px;
+    background:#f9fafb;
+    padding:10px;
+    border-radius:10px;
+    margin-top:8px;
+}
+
+.note {
+    background:#fff7ed;
+    border-left:4px solid #f59e0b;
+    padding:12px;
+    border-radius:10px;
+    font-size:13px;
+}
+
+.footer {
+    text-align:center;
+    color:#ddd;
+    font-size:12px;
+    margin-top:20px;
+}
+
+#toast {
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#111;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:10px;
+    opacity:0;
+    transition:0.3s;
+}
+#toast.show { opacity:1; }
+</style>
 </head>
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <h1>✨ Kamus Dayak Ahe</h1>
-        <div class="subtitle">
-            Terjemahan cepat ⚡ akurat 🎯 & terpercaya 🔥
-        </div>
-        <div class="urgency">
-            ⏳ Respon cepat hari ini • Jangan sampai antri lama
-        </div>
+<h1>✨ Kamus Dayak Ahe</h1>
+<div class="subtitle">Cepat ⚡ Akurat 🎯 Terpercaya 🔥</div>
+<div class="urgency">⏳ Respon cepat hari ini • Prioritas terbatas</div>
 
-        <!-- STEP 1 -->
-        <div class="card">
-            <div class="step">
-                1️⃣ Bayar Rp 10.000 💸
-            </div>
+<!-- STEP 1 -->
+<div class="card">
+<div class="step">1️⃣ Bayar Rp 10.000 💸</div>
 
-            <div class="payment" onclick="copy('085328736706','Dana')">
-                💳 Dana <span>📋</span>
-            </div>
+<div class="payment" onclick="copy('901780894775','Sea Bank')">
+<span>🌊 Sea Bank</span>
+<span class="number">901780894775 📋</span>
+</div>
 
-            <div class="payment" onclick="copy('000028454387','Super Bank')">
-                🏦 Super Bank <span>📋</span>
-            </div>
+<a href="javascript:void(0)" onclick="waBukti()" class="btn">
+📤 Kirim Bukti Bayar
+</a>
+</div>
 
-            <div class="payment" onclick="copy('901780894775','Sea Bank')">
-                🌊 Sea Bank <span>📋</span>
-            </div>
+<!-- STEP 2 -->
+<div class="card">
+<div class="step">2️⃣ Kirim Teks 📝</div>
 
-            <a href="#" onclick="waBukti()" class="btn">
-                📤 Kirim Bukti Bayar (Auto Chat)
-            </a>
-        </div>
+<a href="javascript:void(0)" onclick="waOrder()" class="secondary-btn">
+💬 Kirim Kata / Kalimat
+</a>
 
-        <!-- STEP 2 -->
-        <div class="card">
-            <div class="step">
-                2️⃣ Kirim Teks 📝
-            </div>
+<p style="font-size:13px;">Ketik teks yang ingin diterjemahkan.</p>
 
-            <a href="#" onclick="waOrder()" class="secondary-btn">
-                💬 Kirim Kata / Kalimat
-            </a>
+<div class="testi">⭐ “Respon cepat banget, gak nunggu lama!”</div>
+<div class="testi">⭐ “Terjemahan jelas & mudah dipahami 👍”</div>
+</div>
 
-            <p style="font-size:13px;">
-                Tulis teks yang ingin diterjemahkan.
-            </p>
+<!-- STEP 3 -->
+<div class="card">
+<div class="step">3️⃣ Terima Hasil 🚀</div>
+<p>Hasil dikirim cepat & rapi.</p>
+</div>
 
-            <div class="testi">
-                ⭐ “"
-            </div>
-            <div class="testi">
-                ⭐ “Terjemahan akurat 👍”
-            </div>
-        </div>
+<div class="note">
+💡 Tips: Gunakan kalimat lengkap agar hasil lebih akurat 🎯
+</div>
 
-        <!-- STEP 3 -->
-        <div class="card">
-            <div class="step">
-                3️⃣ Terima Hasil 🚀
-            </div>
-            <p>
-                Hasil dikirim cepat & jelas.
-            </p>
-        </div>
+<div class="footer">
+© 2026 • Support Developer ❤️
+</div>
 
-        <div class="note">
-            💡 Tips: Gunakan kalimat lengkap agar hasil lebih akurat 🎯
-        </div>
+</div>
 
-        <div class="footer">
-            © 2026 • Support Developer ❤️
-        </div>
+<div id="toast"></div>
 
-    </div>
+<script>
+function copy(text,name){
+    navigator.clipboard.writeText(text)
+    .then(()=>showToast("✅ "+name+" disalin!"))
+    .catch(()=>showToast("❌ Gagal menyalin"));
+}
 
-    <div id="toast"></div>
+function showToast(msg){
+    let t=document.getElementById("toast");
+    t.innerText=msg;
+    t.classList.add("show");
+    setTimeout(()=>t.classList.remove("show"),2000);
+}
 
-    <script>
-        function copy(text, name) {
-            navigator.clipboard.writeText(text);
-            showToast("✅ " + name + " disalin!");
-        }
+function waBukti(){
+    let pesan="Halo, saya sudah bayar. Ini bukti transfer saya.";
+    window.open("https://wa.me/6285328736706?text="+encodeURIComponent(pesan));
+}
 
-        function showToast(msg) {
-            let t = document.getElementById("toast");
-            t.innerText = msg;
-            t.classList.add("show");
-            setTimeout(()=>t.classList.remove("show"), 2000);
-        }
-
-        function waBukti() {
-            let pesan = "Halo, saya sudah bayar. Ini bukti transfer saya.";
-            window.open("https://wa.me/6285328736706?text=" + encodeURIComponent(pesan));
-        }
-
-        function waOrder() {
-            let pesan = "Halo, saya ingin terjemahkan:\n\n";
-            window.open("https://wa.me/6285328736706?text=" + encodeURIComponent(pesan));
-        }
-    </script>
+function waOrder(){
+    let pesan="Halo, saya ingin terjemahkan:\n\n";
+    window.open("https://wa.me/6285328736706?text="+encodeURIComponent(pesan));
+}
+</script>
 
 </body>
 </html>
