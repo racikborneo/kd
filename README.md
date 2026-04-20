@@ -1,4 +1,4 @@
-#### (Demo)[https://racikborneo.github.io/kd/]
+#### [Demo](https://racikborneo.github.io/kd/)
 ## 🚀 Fitur Utama
 
 - ⚡ Terjemahan cepat & responsif
